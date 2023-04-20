@@ -11,6 +11,7 @@ import concurrent.futures
 from GoogleImageScraper import GoogleImageScraper
 from patch import webdriver_executable
 
+import os
 
 def worker_thread(search_key):
     image_scraper = GoogleImageScraper(
@@ -24,6 +25,12 @@ def worker_thread(search_key):
         max_missed)
     image_urls = image_scraper.find_image_urls()
     image_scraper.save_images(image_urls, keep_filenames)
+    
+    with open(os.path.join("image_list", search_key + ".txt"), "w", encoding="utf-8") as f:
+        for img in image_urls:
+            f.writelines(img)
+            f.writelines("\n")
+        f.close()
 
     #Release resources
     del image_scraper
@@ -31,13 +38,13 @@ def worker_thread(search_key):
 if __name__ == "__main__":
     #Define file path
     webdriver_path = os.path.normpath(os.path.join(os.getcwd(), 'webdriver', webdriver_executable()))
-    image_path = os.path.normpath(os.path.join(os.getcwd(), 'photos'))
+    image_path = os.path.normpath(os.path.join(sys.argv[1], 'photos'))
 
     #Add new search key into array ["cat","t-shirt","apple","orange","pear","fish"]
-    search_keys = list(set(["cat","t-shirt"]))
+    search_keys = list(set([sys.argv[2]]))
 
     #Parameters
-    number_of_images = 5                # Desired number of images
+    number_of_images = int(sys.argv[3])                # Desired number of images
     headless = True                     # True = No Chrome GUI
     min_resolution = (0, 0)             # Minimum desired image resolution
     max_resolution = (9999, 9999)       # Maximum desired image resolution
