@@ -41,7 +41,9 @@ if __name__ == "__main__":
     image_path = os.path.normpath(os.path.join(sys.argv[1], 'photos'))
 
     #Add new search key into array ["cat","t-shirt","apple","orange","pear","fish"]
-    search_keys = list(set([sys.argv[2]]))
+    types = sys.argv[2]
+    for type in types:
+        search_keys = list(set([type]))
 
     #Parameters
     number_of_images = int(sys.argv[3])                # Desired number of images
