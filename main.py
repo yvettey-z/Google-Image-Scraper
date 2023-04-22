@@ -11,7 +11,7 @@ import concurrent.futures
 from GoogleImageScraper import GoogleImageScraper
 from patch import webdriver_executable
 
-import os
+import sys
 
 def worker_thread(search_key):
     image_scraper = GoogleImageScraper(

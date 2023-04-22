@@ -619,7 +619,7 @@ search_keys = \
  'neutral_romanticism_painting',
  'neutral_color_field_painting_painting']
 
-for key in search_keys[-1:-3]:
+for key in search_keys[-1:]:
     # call_args = 'command ' + key
     # call_args = call_args.split() # because call takes a list of strings
     # call(call_args)
