@@ -619,8 +619,10 @@ search_keys = \
  'neutral_romanticism_painting',
  'neutral_color_field_painting_painting']
 
+path = "F:\Yvette\GoogleDrive\.shortcut-targets-by-id\12lsQ9WDkIrk52Sf2_9wyQsAO0-rN1xle\ARTSML\data"
+
 for key in search_keys[-206:]:
     # call_args = 'command ' + key
     # call_args = call_args.split() # because call takes a list of strings
     # call(call_args)
-    subprocess.call(f'python main.py "F:\Yvette\GoogleDrive\.shortcut-targets-by-id\12lsQ9WDkIrk52Sf2_9wyQsAO0-rN1xle\ARTSML\data" {key} 2000', shell=True)
+    subprocess.call(f'python main.py {path} {key} 2000', shell=True)
